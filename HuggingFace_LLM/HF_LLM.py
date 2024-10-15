@@ -30,3 +30,23 @@ print(df.head())
 df["label_name"].value_counts(ascending=True).plot.barh()
 plt.title("Frequency of Classes")
 plt.show()
+
+#dataset heavily inbalanced, we can deal with it by randomly oversample minority class, randomly 
+#undersample majority class or gather more labeled data from underrepresented classes.
+
+#how long are the tweets, interesting for max. context size
+df["Words per tweet"]=df["text"].str.split().apply(len)
+df.boxplot("Words per tweet", by="label_name", grid=False,
+           showfliers=False, color="black")
+plt.suptitle("")
+plt.xlabel("")
+plt.show()
+#we see now in bp the distribution of words pert tweet per emotion
+
+#dont need Dataframe anymore:
+emotions.reset_format()
+
+#From text to tokens:
+text="Tokenizing text is a core task of NLP."
+tokenized_text= list(text)
+print(tokenized_text)
